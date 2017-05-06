@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
-var emplService = require('/home/nemanja/Documents/projects/jobbar/services/employeesService');
+var path = require('path');
+var emplService = require(path.resolve('./services/employeesService'));
 
 /*var itemOne = Employee({name: 'Nemanja',surname: 'Sokic', position: 'Engineer', birth: "1989-06-07", sallary: 75})
     .save(function(err){
@@ -10,7 +11,9 @@ var emplService = require('/home/nemanja/Documents/projects/jobbar/services/empl
 
 module.exports = function(app){
     app.get('/employees', function(req,res){
-            data = emplService.getAll();
-            res.render('employees',{empl: data});
+            console.log('I received a GET request!');
+            var data = emplService.getAll(res);
+            console.log(data);
+            
     });
 };

@@ -17,10 +17,10 @@ var employee = new mongoose.Schema({
 var Employee = mongoose.model('Employee', employee);
 
 module.exports = {
-        getAll: function(){
+        getAll: function(res){
             Employee.find({}, function(err,data){
             if(err) throw err;
-            return data;
-            });
+            res.render('employees',{empl: data});
+        });
     }
 };
