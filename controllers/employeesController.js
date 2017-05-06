@@ -8,12 +8,17 @@ var emplService = require(path.resolve('./services/employeesService'));
         console.log('item saved');
 });*/
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 module.exports = function(app){
     app.get('/employees', function(req,res){
             console.log('I received a GET request!');
-            var data = emplService.getAll(res);
-            console.log(data);
-            
+            emplService.getAll(res);
+    });
+    app.post('/employees/newEmpl', urlencodedParser, function(req,res){
+            emplService.create(req,res);
+    });
+    app.get('/employees/newEmpl', function(req,res){
+            res.render('newEmpl');
     });
 };

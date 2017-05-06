@@ -17,10 +17,18 @@ var employee = new mongoose.Schema({
 var Employee = mongoose.model('Employee', employee);
 
 module.exports = {
-        getAll: function(res){
-            Employee.find({}, function(err,data){
+    getAll: function(res){
+        Employee.find({}, function(err,data){
             if(err) throw err;
             res.render('employees',{empl: data});
+        });
+    },
+    create: function(req,res){
+        if (!req.body) return res.sendStatus(400);
+        var newEmpl = Employee(req.body).save(function(err,data){
+            if(err) throw err;
+            res.redirect("/employees");
+            
         });
     }
 };

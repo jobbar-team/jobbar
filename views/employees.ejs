@@ -7,7 +7,7 @@
     </head>
     <body>
         <h2>Employees</h2>
-        <button type="button" class="btn btn-success" onclick="location.href='/employees/newEmpl';">Add new employee</button>
+        <a class="btn btn-primary btn-lg" href="/employees/newEmpl" role="button">Add new employee</a>
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Table of employees</div>
@@ -22,15 +22,15 @@
                     <td>Sallary</td>
                 </thead>
                 <tbody>
+                    <%for(var i = 0; i < empl.length; i++){%>
                     <tr>
-                        <%for(var i = 0; i < empl.length; i++){%>
                             <td><%=empl[i].name%></td>
                             <td><%=empl[i].surname%></td>
                             <td><%=empl[i].position%></td>
                             <td><%=empl[i].birth%></td>
                             <td><%=empl[i].sallary%>k</td>
-                        <%}%>
                     </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>
