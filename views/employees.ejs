@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <h2>Employees</h2>
+        <button type="button" class="btn btn-success" onclick="location.href='/employees/newEmpl';">Add new employee</button>
+        <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Table of employees</div>
+  
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <td>Name</td>
+                    <td>Surname</td>
+                    <td>Position</td>
+                    <td>Birthday</td>
+                    <td>Sallary</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <%for(var i = 0; i < empl.length; i++){%>
+                            <td><%=empl[i].name%></td>
+                            <td><%=empl[i].surname%></td>
+                            <td><%=empl[i].position%></td>
+                            <td><%=empl[i].birth%></td>
+                            <td><%=empl[i].sallary%>k</td>
+                        <%}%>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
