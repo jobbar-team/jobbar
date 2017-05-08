@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+var ObjectId = require('mongodb').ObjectID;
 mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
 
 
@@ -28,7 +28,12 @@ module.exports = {
         var newEmpl = Employee(req.body).save(function(err,data){
             if(err) throw err;
             res.redirect("/employees");
-            
+        });
+    },
+    remove: function(req,res){
+        Employee.findByIdAndRemove(ObjectId(req.params.id),function(err,data){
+            if(err) throw err;
+            res.json(data);
         });
     }
 };

@@ -21,4 +21,7 @@ module.exports = function(app){
     app.get('/employees/newEmpl', function(req,res){
             res.render('newEmpl');
     });
+    app.delete('/employees/delete/:id', function(req,res){
+             emplService.remove(req,res);
+    });
 };

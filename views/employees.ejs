@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/appjs/js.js"></script>
     </head>
     <body>
         <h2>Employees</h2>
@@ -11,7 +12,6 @@
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Table of employees</div>
-  
             <!-- Table -->
             <table class="table">
                 <thead>
@@ -20,15 +20,19 @@
                     <td>Position</td>
                     <td>Birthday</td>
                     <td>Sallary</td>
+                    <td colspan="2">Action</td>
                 </thead>
                 <tbody>
                     <%for(var i = 0; i < empl.length; i++){%>
                     <tr>
-                            <td><%=empl[i].name%></td>
-                            <td><%=empl[i].surname%></td>
-                            <td><%=empl[i].position%></td>
-                            <td><%=empl[i].birth%></td>
-                            <td><%=empl[i].sallary%>k</td>
+                        <td><%=empl[i].name%></td>
+                        <td><%=empl[i].surname%></td>
+                        <td><%=empl[i].position%></td>
+                        <td><%=empl[i].birth%></td>
+                        <td><%=empl[i].sallary%>k</td>
+                        <td><input type="hidden" id="em" value="<%=empl[i]._id%>" /></td>
+                        <td><a class="btn btn-primary btn-lg">edit</a></td>
+                        <td><input type="button" class="btn btn-danger btn-lg" name="delete" value="Delete" onclick="deleteRow(this,em)"></td>
                     </tr>
                     <%}%>
                 </tbody>
