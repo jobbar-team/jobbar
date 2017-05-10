@@ -11,17 +11,27 @@ var emplService = require(path.resolve('./services/employeesService'));
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 module.exports = function(app){
+    app.use(bodyParser.json({ type: 'application/*+json' }));
+    
     app.get('/employees', function(req,res){
-            console.log('I received a GET request!');
-            emplService.getAll(res);
+        console.log('I received a GET request!');
+        emplService.getAll(res);
     });
-    app.post('/employees/newEmpl', urlencodedParser, function(req,res){
+    app.post('/employees/empl', urlencodedParser, function(req,res){
             emplService.create(req,res);
     });
-    app.get('/employees/newEmpl', function(req,res){
-            res.render('newEmpl');
+    app.get('/employees/empl', function(req,res){
+        res.render('empl',{empl: {}});
     });
     app.delete('/employees/delete/:id', function(req,res){
-             emplService.remove(req,res);
+        emplService.remove(req,res);
+    });
+    app.get('/employees/empl/:id', function(req,res){
+        emplService.edit(req,res);
+    });
+    app.put('/employees/update/:id', urlencodedParser, function(req,res){
+            console.log(req.body);
+            console.log(req.params.id);
+        //emplService.save(req,res);
     });
 };
