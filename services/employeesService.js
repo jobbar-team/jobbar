@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-
+var ObjectId = require('mongodb').ObjectID;
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
 
 
@@ -24,11 +25,52 @@ module.exports = {
         });
     },
     create: function(req,res){
-        if (!req.body) return res.sendStatus(400);
-        var newEmpl = Employee(req.body).save(function(err,data){
+        if (req.body == null || Object.keys(req.body).length === 0){
+            return res.sendStatus(400);
+        } 
+        Employee(req.body).save(function(err,data){
             if(err) throw err;
-            res.redirect("/employees");
+            var saved = {
+                _id: data._doc._id,
+                name: data._doc.name,
+                surname: data._doc.surname,
+                position: data._doc.position,
+                birth: data._doc.birth,
+                sallary: data._doc.sallary
+            };
             
+            console.log(saved);
+            console.log(JSON.stringify(saved));
+            res.json(saved);
+        });
+    },
+    remove: function(req,res){
+        Employee.findByIdAndRemove(ObjectId(req.params.id),function(err,data){
+            if(err) throw err;
+            res.json(data);
+        });
+    },
+    edit: function(req,res){
+        Employee.findById(ObjectId(req.params.id),function(err,data){
+            if(err) throw err;
+            res.render('empl',{empl: data});
+        });
+    },
+    save: function(req,res){
+        Employee.findByIdAndUpdate(ObjectId(req.params.id), req.body , function(err,data){
+            if(err) throw err;
+            var saved = {
+                _id: data._doc._id,
+                name: data._doc.name,
+                surname: data._doc.surname,
+                position: data._doc.position,
+                birth: data._doc.birth,
+                sallary: data._doc.sallary
+            };
+            
+            console.log(saved);
+            console.log(JSON.stringify(saved));
+            res.json(saved);
         });
     }
 };

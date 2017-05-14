@@ -11,7 +11,7 @@ app.use('/assets', express.static('./public/assets'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
-
+app.use('/appjs',express.static(__dirname + '/'));
 
 app.listen(3000);
 console.log('Listening port 3000');
