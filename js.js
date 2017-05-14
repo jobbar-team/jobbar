@@ -55,7 +55,14 @@ function saveEdited(){
     var id = url.substring(url.lastIndexOf('/') + 1);
     $.ajax({
         type: 'PUT',
-        url: '/employees/update/'+id, // + id
+        url: '/employees/update/'+id, // + id,
+        data:{
+            name: $('[name="name"]').val(),
+            surname: $('[name="surname"]').val(),
+            position: $('[name="position"]').val(),
+            birth: $('[name="birth"]').val(),
+            sallary: $('[name="sallary"]').val()
+        },
         success: function(data){
             console.log('Great job!');
             location.replace('/employees/');
@@ -65,3 +72,41 @@ function saveEdited(){
         }
     });
 };
+
+function create(){
+    $.ajax({
+        type: 'POST',
+        url: '/employees/empl',
+        dataType: "json",
+        data: {
+            name: $('[name="name"]').val(),
+            surname: $('[name="surname"]').val(),
+            position: $('[name="position"]').val(),
+            birth: $('[name="birth"]').val(),
+            sallary: $('[name="sallary"]').val()
+        },
+        success: function(data){
+            console.log('Employee is created.');
+            location.replace('/employees/');
+        },
+        error: function(jqXHR,textStatus,errorThrown){
+            console.log(jqXHR.status);
+            console.log(textStatus);
+        }
+    });
+};
+
+
+function showHide(){
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+        if(url=="/employees/empl"){
+            document.getElementById('create_button').style.display = 'block';
+            document.getElementById('edit_button').style.display = 'none';
+        }if(url=="/employees/empl/" +id){
+            document.getElementById('create_button').style.display = 'none';
+            document.getElementById('edit_button').style.display = 'block';
+        }
+};
+showHide();
+

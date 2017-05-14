@@ -18,6 +18,7 @@ module.exports = function(app){
         emplService.getAll(res);
     });
     app.post('/employees/empl', urlencodedParser, function(req,res){
+            console.log('POST method: ' + JSON.stringify(req.body));
             emplService.create(req,res);
     });
     app.get('/employees/empl', function(req,res){
@@ -30,8 +31,7 @@ module.exports = function(app){
         emplService.edit(req,res);
     });
     app.put('/employees/update/:id', urlencodedParser, function(req,res){
-            console.log(req.body);
-            console.log(req.params.id);
-        //emplService.save(req,res);
+            console.log(JSON.stringify(req.body));
+            emplService.save(req,res);
     });
 };

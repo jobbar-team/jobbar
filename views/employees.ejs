@@ -24,11 +24,12 @@
                 </thead>
                 <tbody>
                     <%for(var i = 0; i < empl.length; i++){%>
+                        <%var bdate = JSON.stringify(empl[i].birth).substring(1,11);%>
                     <tr>
                         <td><%=empl[i].name%></td>
                         <td><%=empl[i].surname%></td>
                         <td><%=empl[i].position%></td>
-                        <td><%=JSON.stringify(empl[i].birth).substring(1,11)%></td>
+                        <td><%=bdate%></td>
                         <td><%=empl[i].sallary%>k</td>
                         <td><input type="hidden" id="em" value="<%=empl[i]._id%>" /></td>
                         <td><input type="button" class="btn btn-primary btn-lg" name="edit" value="Edit" onclick="edit(this,em)"></td>

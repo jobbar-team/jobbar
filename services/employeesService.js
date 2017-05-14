@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
 
 
@@ -24,10 +25,23 @@ module.exports = {
         });
     },
     create: function(req,res){
-        if (!req.body) return res.sendStatus(400);
-        var newEmpl = Employee(req.body).save(function(err,data){
+        if (req.body == null || Object.keys(req.body).length === 0){
+            return res.sendStatus(400);
+        } 
+        Employee(req.body).save(function(err,data){
             if(err) throw err;
-            res.redirect("/employees");
+            var saved = {
+                _id: data._doc._id,
+                name: data._doc.name,
+                surname: data._doc.surname,
+                position: data._doc.position,
+                birth: data._doc.birth,
+                sallary: data._doc.sallary
+            };
+            
+            console.log(saved);
+            console.log(JSON.stringify(saved));
+            res.json(saved);
         });
     },
     remove: function(req,res){
@@ -39,71 +53,24 @@ module.exports = {
     edit: function(req,res){
         Employee.findById(ObjectId(req.params.id),function(err,data){
             if(err) throw err;
-                data.date = JSON.stringify(data.birth).substring(1,11);
             res.render('empl',{empl: data});
         });
     },
     save: function(req,res){
         Employee.findByIdAndUpdate(ObjectId(req.params.id), req.body , function(err,data){
             if(err) throw err;
-            res.json(data);
+            var saved = {
+                _id: data._doc._id,
+                name: data._doc.name,
+                surname: data._doc.surname,
+                position: data._doc.position,
+                birth: data._doc.birth,
+                sallary: data._doc.sallary
+            };
+            
+            console.log(saved);
+            console.log(JSON.stringify(saved));
+            res.json(saved);
         });
     }
 };
-
-/*function convert (d){
-                var parts = d.split(" ");
-                var months = {Jan: "01",Feb: "02",Mar: "03",Apr: "04",May: "05",Jun: "06",Jul: "07",Aug: "08",Sep: "09",Oct: "10",Nov: "11",Dec: "12"};
-            return parts[3]+"-"+months[parts[1]]+"-"+parts[2];
-        }*/
-/*function parseD(date){
-    //date ----->  Sat Feb 02 2013 01:00:00 GMT+0100 (CET) --> YYYY-MM-DD
-    //console.log(JSON.stringify(date));
-    var d = JSON.stringify(date).substring(1,11);
-    console.log('d: ' + d);
-    //console.log(d);
-    var year = date.substring(11,15);
-    var day = date.substring(8,10);
-    var m = date.substring(4,7);
-    switch(m){
-        case 'Jan':
-            m = '01';
-            break;
-        case 'Feb':
-            m = '02';
-            break;
-        case 'Mar':
-            m = '03';
-            break;
-        case 'Apr':
-            m = '04';
-            break;
-        case 'Maj':
-            m = '05';
-            break;
-        case 'Jun':
-            m = '06';
-            break;
-        case 'Jul':
-            m = '07';
-            break;
-        case 'Aug':
-            m = '08';
-            break;
-        case 'Sep':
-            m = '09';
-            break;
-        case 'Okt':
-            m = '10';
-            break;
-        case 'Nov':
-            m = '11';
-            break;
-        case 'Dec':
-            m = '12';
-            break;
-            default:
-            console.log('Make a mistake!');
-    }
-    var d = year + '-' + m + '-' + day;
-    return d;};*/
