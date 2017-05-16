@@ -1,0 +1,48 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Droid Serif', serif;
+}
+body{
+    background:linear-gradient(rgba(179, 204, 204,0.8),rgba(224, 235, 235,0.7))no-repeat;
+    height: 95vh;
+    width: 100vh;
+    position: relative;
+}
+.wrap-botton{
+    margin: 10px;
+}
+.botton{
+    height: 40%;
+    width: 66%;
+    background: rgba(56, 103, 213, 0.78);
+    position: absolute;
+    top: 20vh;
+    left: 20vh;
+    margin: 10px;
+    border:30px solid rgba(56, 103, 213, 0.78);
+    border-radius: 60px;
+}
+.botton h1,p, p a{
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 80px;
+    font-weight: bold;
+    color: rgb(214, 202, 186);
+}
+.botton p{
+    line-height: 20px;
+}
+.botton p a{
+    font-size: 2em;
+    color: 
+}
+.botton p a:hover{
+   color:rgb(0, 102, 77);
+}
+.botton.second{
+    left: 120vh;
+    background: rgba(56, 103, 213, 0.78);
+}
