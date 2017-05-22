@@ -11,7 +11,12 @@ var employee = new mongoose.Schema({
     surname: String,
     position: String,
     birth: Date,
-    sallary: Number
+    contract: {
+        contractNo: Number,
+        type: String,
+        sallary: Number,
+        contractDate: Date
+    }
 });
 
 //Create a model
@@ -36,7 +41,7 @@ module.exports = {
                 surname: data._doc.surname,
                 position: data._doc.position,
                 birth: data._doc.birth,
-                sallary: data._doc.sallary
+                contract: null
             };
             
             console.log(saved);
@@ -65,7 +70,7 @@ module.exports = {
                 surname: data._doc.surname,
                 position: data._doc.position,
                 birth: data._doc.birth,
-                sallary: data._doc.sallary
+                contract: null
             };
             
             console.log(saved);
