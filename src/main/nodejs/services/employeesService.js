@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+/*var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
@@ -20,10 +20,15 @@ var employee = new mongoose.Schema({
 });
 
 //Create a model
-var Employee = mongoose.model('Employee', employee);
+var Employee = mongoose.model('Employee', employee);*/
+var path = require('path');
+var Employee = require(path.resolve('./src/main/nodejs/model/employee-model'));
+var ObjectId = require('mongodb').ObjectID;
+
 
 module.exports = {
     getAll: function(res){
+        console.log(Employee);
         Employee.find({}, function(err,data){
             if(err) throw err;
             res.render('employees',{empl: data});

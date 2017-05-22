@@ -3,6 +3,12 @@ var express = require('express');
 
 var controller = require('./src/main/nodejs/controllers/mainController');
 var employeesController = require('./src/main/nodejs/controllers/employeesController');
+var contractController = require('./src/main/nodejs/controllers/contractController');
+
+//MongoDB
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
 
 var app = express();
 
@@ -25,3 +31,4 @@ console.log('Listening port 3000');
 
 controller(app);
 employeesController(app);
+contractController(app);
