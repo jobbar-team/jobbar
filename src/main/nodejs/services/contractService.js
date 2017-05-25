@@ -4,12 +4,12 @@ var Employee = require(path.resolve('./src/main/nodejs/model/employee-model'));
 var ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
-    getAll: function(res){
+    /*getAll: function(res){
         Contract.find({}, function(err,data){
             if(err) throw err;
             res.render('contracts',{contr:data});
         });
-    },
+    },*/
     getAllEmpl: function(res){
         Employee.find({}, function(err,data){
             if(err) throw err;
