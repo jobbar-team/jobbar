@@ -2,9 +2,14 @@
 <html>
     <head>
         <title>Contract</title>
+        <link rel="stylesheet" href="/assets/autocmpl/awesomplete.css" />
+         <script src="/js/jquery.min.js"></script>
+        <script src="/assets/autocmpl/awesomplete.js" async></script>
     </head>
     <body>
-        <div>Hello</div>
-        <p></p>
+        <div>Contract-View</div>
+        
+        <input class="awesomplete" data-list="<%=names%>" size="25" placeholder="Type name or surname of employee" />
+        <script src="/public/js/contrAJAX.js"></script>
     </body>
 </html>

@@ -28,7 +28,6 @@ var ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
     getAll: function(res){
-        console.log(Employee);
         Employee.find({}, function(err,data){
             if(err) throw err;
             res.render('employees',{empl: data});
