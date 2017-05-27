@@ -17,7 +17,18 @@ module.exports = {
             data.forEach(function(element) {
                 nameList.push(element.name + ' ' + element.surname);
             }, this);
-            res.render('contracts',{names: nameList});
+            res.render('contracts',{name: nameList});
+        });
+    },
+    getOneEmpl: function(req,res){
+        Employee.find({name: req.query.name, surname: req.query.surname}, function(err,data){
+            if(err) throw err;
+            if(data.length !== 0){
+                console.log(data[0].surname);
+                res.send(data);
+            }else{
+                res.sendStatus(404);
+            }
         });
     }
 }

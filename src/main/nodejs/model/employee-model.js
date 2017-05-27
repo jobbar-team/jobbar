@@ -9,7 +9,8 @@ var employee = new mongoose.Schema({
         contractNo: Number,
         type: String,
         sallary: Number,
-        contractDate: Date
+        contractDate: Date,
+        duration: Date
     }
 });
 

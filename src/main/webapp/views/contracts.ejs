@@ -8,8 +8,57 @@
     </head>
     <body>
         <div>Contract-View</div>
-        
-        <input class="awesomplete" data-list="<%=names%>" size="25" placeholder="Type name or surname of employee" />
+        <input  onchange="setEmpl()" id="em" class="awesomplete"  data-list="<%=name%>" size="25" placeholder="Type name or surname of employee" />
+        <form id="form" style="display: none">
+            <table>
+                <tr>
+                    <td>Name: </td>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <td>Surname: </td>
+                    <td id="surname"></td>
+                </tr>
+                <tr>
+                    <td>Position: </td>
+                    <td id="position"></td>
+                </tr>
+                <th>
+                    <td>Contract: </td>
+                </th>
+                <tr id = "details" style="display:none">
+                    <td id="type"></td>
+                    <td id="sallary"></td>
+                    <td id="contractDate"></td>
+                    <td id="duration"></td>
+                </tr>
+                <tr id="negation" style="display:none">
+                    <td>Employee doesn't have defined contract!</td>
+                    <td><p style="color:red" onclick="openForm()">Create a contract</p></td>
+                </tr>
+            </table>
+        </form>
+        <form id="contrForm" style="display: none">
+            <table>
+                <tr>
+                    <th>type</th>
+                    <td>
+                        <select>
+                            <option value="permanent">Permanent</option>
+                            <option value="temporary">Temporary</option>
+                            <option value="freelance">Freelance</option>
+                        </select>
+                    </td>
+                    <th>sallary</th>
+                    <td><input type="number"></td>
+                    <th>Duration</th>
+                    <td><input type="date"></td>
+                </tr>
+                <tr>
+                    <td><button type="button" onclick="addContract()">Submit</button></td>
+                </tr>
+            </table>
+        </form>
         <script src="/public/js/contrAJAX.js"></script>
     </body>
 </html>

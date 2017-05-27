@@ -6,7 +6,8 @@ var contract = new mongoose.Schema({
     contractNo: Number,
     type: String,
     sallary: Number,
-    contractDate: Date
+    contractDate: Date,
+    duration: Date
 });
 
 //Create a model
