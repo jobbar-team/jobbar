@@ -14,21 +14,25 @@ body {
 .center_content_button {
   position: absolute;
   margin-top: 16%;
-  left: 25%; }
+  left: 25%;
+  line-height: 37px; }
 
-.empoloyees_p, .shifts-p {
-  text-indent: 13px; }
-  .empoloyees_p p, .shifts-p p {
-    text-indent: 13px;
-    word-spacing: 3px;
-    font-size: 1.4em;
-    color: #1f232f;
-    text-transform: uppercase; }
-  .empoloyees_p a, .shifts-p a {
-    list-style-type: none;
-    text-decoration: none;
-    color: rgba(31, 35, 47, 0.49); }
-    .empoloyees_p a:hover, .shifts-p a:hover {
-      font-size: 1.8em; }
+.empoloyees_p:hover, .shifts-p:hover {
+  -webkit-transform: scale(1.8);
+  -ms-transform: scale(1.8);
+  transform: scale(1.8);
+  border: 1px solid rgba(31, 35, 47, 0.49); }
+.empoloyees_p p, .shifts-p p {
+  text-align: center;
+  word-spacing: 3px;
+  font-size: 1.4em;
+  color: #1f232f;
+  text-transform: uppercase; }
+.empoloyees_p a, .shifts-p a {
+  list-style-type: none;
+  text-decoration: none;
+  color: rgba(31, 35, 47, 0.49); }
+  .empoloyees_p a:hover, .shifts-p a:hover {
+    color: #567dea; }
 
 /*# sourceMappingURL=main_page.css.map */
