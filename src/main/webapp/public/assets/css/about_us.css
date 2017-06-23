@@ -1,0 +1,39 @@
+body {
+  background: url(/images/9.jpg);
+  background-size: cover; }
+
+#menu-box {
+  display: flex;
+  flex-direction: reverse;
+  justify-content: flex-end; }
+  #menu-box li {
+    padding: 20px;
+    color: blue;
+    list-style-type: none; }
+    #menu-box li a {
+      color: #1f232f;
+      text-shadow: 0px 6px 46px;
+      text-decoration: none;
+      text-transform: capitalize; }
+      #menu-box li a:hover {
+        text-decoration: underline; }
+
+.text_div {
+  display: flex; }
+
+.left_text {
+  position: relative;
+  margin-top: 6%;
+  left: 10%;
+  width: 35%; }
+  .left_text p {
+    color: #1f232f; }
+
+.analytic_div {
+  position: relative;
+  margin-top: 10%;
+  left: 30%; }
+  .analytic_div .analytic_style {
+    height: 80%; }
+
+/*# sourceMappingURL=about_us.css.map */

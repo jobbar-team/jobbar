@@ -11,6 +11,35 @@ body {
   width: 100%;
   position: relative; }
 
+.first_navigation {
+  position: relative;
+  top: 10vh; }
+
+#menu-box {
+  display: flex;
+  flex-direction: reverse;
+  justify-content: flex-end; }
+  #menu-box li {
+    padding: 20px;
+    color: blue;
+    list-style-type: none; }
+    #menu-box li a {
+      color: #1f232f;
+      font-size: 1.2em;
+      text-shadow: 0px 6px 46px;
+      text-decoration: none;
+      text-transform: capitalize; }
+      #menu-box li a:hover {
+        text-decoration: underline; }
+
+#menu-box i {
+  position: relative;
+  top: -44px; }
+
+.fa-3x {
+  font-size: 3em;
+  margin-top: 10px; }
+
 .center_content_button {
   position: absolute;
   margin-top: 16%;
