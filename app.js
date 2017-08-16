@@ -3,6 +3,16 @@ var express = require('express');
 
 var controller = require('./src/main/nodejs/controllers/mainController');
 var employeesController = require('./src/main/nodejs/controllers/employeesController');
+var contractController = require('./src/main/nodejs/controllers/contractController');
+
+//MongoDB
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/jobbar');
+mongoose.connection.once('open', function(){
+    console.log('Connection has been made...');
+}).on('error', function(error){
+    console.log('Connection error: ' + error);
+});
 
 var app = express();
 
@@ -25,3 +35,4 @@ console.log('Listening port 3000');
 
 controller(app);
 employeesController(app);
+contractController(app);

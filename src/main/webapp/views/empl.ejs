@@ -6,6 +6,7 @@
         <script src="/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <nav><a href="/contracts">Go to contract view</a></nav>
         <h1>Add new employee</h1>
         <a href="/employees">Table</a>
         <form>
@@ -13,7 +14,6 @@
             <input value="<%=empl.name%>" type="text" name = "name" placeholder="Employee name..." required>
             <input value="<%=empl.surname%>" type="text" name = "surname" placeholder="Employee surname" required>
             <input value="<%=empl.position%>" type="text" name = "position" placeholder="Employee position" required>
-            <input value="<%=empl.sallary%>" type="number" name = "sallary" placeholder="Employee sallary" required>
             <input value="<%=bdate%>" type="date" name = "birth" required>
                 <button onclick="create()" id="create_button" type="button">Add new employee</button>
                 <button onclick="saveEdited()" id="edit_button" type="button">Save changes</button>

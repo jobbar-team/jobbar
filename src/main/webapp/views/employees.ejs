@@ -7,6 +7,10 @@
         <script src="/public/js/emplAJAX.js"></script>
     </head>
     <body>
+         <nav>
+            <a href="/contracts">Go to contract view</a>
+            <a href="/">Home</a>
+         </nav>
         <h2>Employees</h2>
         <a class="btn btn-primary btn-lg" href="/employees/empl" role="button">Add new employee</a>
         <div class="panel panel-default">
@@ -19,7 +23,6 @@
                     <td>Surname</td>
                     <td>Position</td>
                     <td>Birthday</td>
-                    <td>Sallary</td>
                     <td colspan="2">Action</td>
                 </thead>
                 <tbody>
@@ -30,7 +33,6 @@
                         <td><%=empl[i].surname%></td>
                         <td><%=empl[i].position%></td>
                         <td><%=bdate%></td>
-                        <td><%=empl[i].sallary%>k</td>
                         <td><input type="hidden" id="em" value="<%=empl[i]._id%>" /></td>
                         <td><input type="button" class="btn btn-primary btn-lg" name="edit" value="Edit" onclick="edit(this,em)"></td>
                         <td><input type="button" class="btn btn-danger btn-lg" name="delete" value="Delete" onclick="deleteRow(this,em)"></td>

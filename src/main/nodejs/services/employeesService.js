@@ -1,23 +1,15 @@
-var mongoose = require('mongoose');
+var path = require('path');
+var model = require(path.resolve('./src/main/nodejs/model/employee-model'));
 var ObjectId = require('mongodb').ObjectID;
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
 
-
-
-//Create a schema - blueprint
-var employee = new mongoose.Schema({
-    name: String,
-    surname: String,
-    position: String,
-    birth: Date,
-    sallary: Number
-});
-
-//Create a model
-var Employee = mongoose.model('Employee', employee);
-
+var Employee = model.empl;
 module.exports = {
+    getOne: function(req,res){
+        Employee.findById(ObjectId(req.params.id),function(err,data){
+            if(err) throw err;
+            res.send(data);
+        });
+    },
     getAll: function(res){
         Employee.find({}, function(err,data){
             if(err) throw err;
@@ -36,11 +28,8 @@ module.exports = {
                 surname: data._doc.surname,
                 position: data._doc.position,
                 birth: data._doc.birth,
-                sallary: data._doc.sallary
+                contract:null
             };
-            
-            console.log(saved);
-            console.log(JSON.stringify(saved));
             res.json(saved);
         });
     },
@@ -59,18 +48,30 @@ module.exports = {
     save: function(req,res){
         Employee.findByIdAndUpdate(ObjectId(req.params.id), req.body , function(err,data){
             if(err) throw err;
-            var saved = {
-                _id: data._doc._id,
-                name: data._doc.name,
-                surname: data._doc.surname,
-                position: data._doc.position,
-                birth: data._doc.birth,
-                sallary: data._doc.sallary
-            };
-            
-            console.log(saved);
-            console.log(JSON.stringify(saved));
+            var saved = req.body;
             res.json(saved);
+        });
+    },
+    setAllEmpl: function(res){
+        Employee.find({}, function(err,data){
+            if(err) throw err;
+            var nameList = [];
+            data.forEach(function(element) {
+                nameList.push(element.name + ' ' + element.surname);
+            }, this);
+            res.render('contracts',{name: nameList});
+        });
+    },
+    getOneEmplByNameAndSurname: function(req,res){
+        Employee.find({name: req.query.name, surname: req.query.surname}).
+            populate('contract').
+                exec( function(err,data){
+            if(err) throw err;
+            if(data.length !== 0){
+                res.send(data);
+            }else{
+                res.sendStatus(404);
+            }
         });
     }
 };
