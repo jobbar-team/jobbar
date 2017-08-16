@@ -7,9 +7,13 @@
         <script src="/assets/autocmpl/awesomplete.js" async></script>
     </head>
     <body>
-        <div>Contract-View</div>
+        <nav>
+            <a href="/employees">Go to employees</a>
+            <a href="/">Home</a>
+        </nav>
+        <h2>Contract-View</h2>
         <input  onchange="setEmpl()" id="em" class="awesomplete"  data-list="<%=name%>" size="25" placeholder="Type name or surname of employee" />
-        <form id="form" style="display: none">
+        <form id="form" style="display:none;">
             <table>
                 <tr>
                     <td>Name: </td>
@@ -23,39 +27,84 @@
                     <td>Position: </td>
                     <td id="position"></td>
                 </tr>
-                <th>
-                    <td>Contract: </td>
-                </th>
-                <tr id = "details" style="display:none">
-                    <td id="type"></td>
-                    <td id="sallary"></td>
-                    <td id="contractDate"></td>
-                    <td id="duration"></td>
+                <tr>
+                    <td><input type="hidden" id="empl_id" /></td>
                 </tr>
-                <tr id="negation" style="display:none">
-                    <td>Employee doesn't have defined contract!</td>
-                    <td><p style="color:red" onclick="openForm()">Create a contract</p></td>
+                <tr>
+                    <td><input type="hidden" id="birth" /></td>
+                </tr>
+                <tr>
+                    <td>Contract: </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label style="color: blue" onclick = "setContr();openForm(2);">Change it</label> or 
+                        <label style="color: blue" onclick = "openForm(1);">Add new contract type</label>
+                    </td>
                 </tr>
             </table>
         </form>
-        <form id="contrForm" style="display: none">
+        <form id = "details" style="display:none;">
+            <table>
+                <tr>
+                    <td>Type</td>
+                    <td id="type"></td>
+                </tr>
+                <tr>
+                    <td>sallary</td>
+                    <td id="sallary"></td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td id="contractDate"></td>
+                </tr>
+                <tr>
+                    <td>duration</td>
+                    <td id="duration"></td>
+                </tr>
+            </table>
+        </form>
+        <form id="negation" style="display:none;">
+            <table>
+                <tr>
+                    <td>Employee doesn't have defined contract!</td>
+                </tr>
+            </table>
+        </form>
+        <form id="contrForm" style="display:none;">
             <table>
                 <tr>
                     <th>type</th>
                     <td>
-                        <select>
-                            <option value="permanent">Permanent</option>
+                        <select onchange="durContr()" defaultValue="temporary" id="input_type">
                             <option value="temporary">Temporary</option>
+                            <option value="permanent">Permanent</option>
                             <option value="freelance">Freelance</option>
                         </select>
                     </td>
                     <th>sallary</th>
-                    <td><input type="number"></td>
+                    <td><input id="input_sallary" type="number"></td>
                     <th>Duration</th>
-                    <td><input type="date"></td>
+                    <td><input id="input_duration" type="number" placeholder="how many months?"></td>
                 </tr>
                 <tr>
                     <td><button type="button" onclick="addContract()">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+        <form id="existingForm" style="display:none;">
+            <table>
+                <tr>
+                    <th>Contract type</th>
+                    <td>
+                        <select id="contract_type">
+                        <!--set values of contract-->
+                        </select>
+                    </td>
+                    <td><button type="button" onclick="addContractToEmpl()" id="add">Add contract to employee</button>
+                        <button type="button" onclick="confirmContract()" id="confirm" style="display: none">Confirm</button>
+                        <button type="button" onclick="cancelConfirmation()" id="cancel" style="display: none">Cancel</button>
+                    </td>
                 </tr>
             </table>
         </form>

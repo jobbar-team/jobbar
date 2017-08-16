@@ -7,8 +7,12 @@ var contractController = require('./src/main/nodejs/controllers/contractControll
 
 //MongoDB
 var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar');
+mongoose.connect('mongodb://localhost:27017/jobbar');
+mongoose.connection.once('open', function(){
+    console.log('Connection has been made...');
+}).on('error', function(error){
+    console.log('Connection error: ' + error);
+});
 
 var app = express();
 

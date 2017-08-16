@@ -14,11 +14,9 @@ module.exports = function(app){
     app.use(bodyParser.json({ type: 'application/*+json' }));
     
     app.get('/employees', function(req,res){
-        console.log('I received a GET request!');
         emplService.getAll(res);
     });
     app.post('/employees/empl', urlencodedParser, function(req,res){
-            console.log('POST method: ' + JSON.stringify(req.body));
             emplService.create(req,res);
     });
     app.get('/employees/empl', function(req,res){
@@ -31,7 +29,7 @@ module.exports = function(app){
         emplService.edit(req,res);
     });
     app.put('/employees/update/:id', urlencodedParser, function(req,res){
-            console.log(JSON.stringify(req.body));
             emplService.save(req,res);
     });
+    
 };

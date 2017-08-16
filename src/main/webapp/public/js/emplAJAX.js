@@ -60,8 +60,7 @@ function saveEdited(){
             name: $('[name="name"]').val(),
             surname: $('[name="surname"]').val(),
             position: $('[name="position"]').val(),
-            birth: $('[name="birth"]').val(),
-            sallary: $('[name="sallary"]').val()
+            birth: $('[name="birth"]').val()
         },
         success: function(data){
             console.log('Great job!');
@@ -83,7 +82,7 @@ function create(){
             surname: $('[name="surname"]').val(),
             position: $('[name="position"]').val(),
             birth: $('[name="birth"]').val(),
-            sallary: $('[name="sallary"]').val()
+            contract: {}
         },
         success: function(data){
             console.log('Employee is created.');
