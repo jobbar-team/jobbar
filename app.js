@@ -7,7 +7,9 @@ var contractController = require('./src/main/nodejs/controllers/contractControll
 
 //MongoDB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/jobbar');
+mongoose.connect('mongodb://127.0.0.1:27017/mongodb', {
+  useMongoClient: true
+});
 mongoose.connection.once('open', function(){
     console.log('Connection has been made...');
 }).on('error', function(error){
