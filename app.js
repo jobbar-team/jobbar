@@ -7,7 +7,7 @@ var contractController = require('./src/main/nodejs/controllers/contractControll
 
 //MongoDB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://nem:nem@127.0.0.1:27017/mongodb', {
+mongoose.connect('mongodb://nem:nem@mongodb-1-gltzc:27017/mongodb', {
   useMongoClient: true
 });
 mongoose.connection.once('open', function(){
@@ -33,7 +33,7 @@ app.get('/main', function(req, res){
 });
 
 app.listen(8080);
-console.log('Listening port 3000');
+console.log('Listening port 8080');
 
 controller(app);
 employeesController(app);
