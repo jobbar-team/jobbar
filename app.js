@@ -7,13 +7,16 @@ var contractController = require('./src/main/nodejs/controllers/contractControll
 
 //MongoDB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://nem:nem@mongodb-1-gltzc:27017/mongodb', {
+/*mongoose.connect('mongodb://nem:nem@mongodb-1-gltzc:27017/mongodb', {
   useMongoClient: true
-});
+});*/
 mongoose.connection.once('open', function(){
     console.log('Connection has been made...');
 }).on('error', function(error){
     console.log('Connection error: ' + error);
+});
+mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar', {
+  useMongoClient: true
 });
 
 var app = express();
