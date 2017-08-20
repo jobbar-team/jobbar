@@ -7,17 +7,20 @@ var contractController = require('./src/main/nodejs/controllers/contractControll
 
 //MongoDB
 var mongoose = require('mongoose');
-/*mongoose.connect('mongodb://nem:nem@mongodb-1-gltzc:27017/mongodb', {
+
+mongoose.connect('mongodb://localhost:27017/jobbar', {
   useMongoClient: true
-});*/
+});
+
 mongoose.connection.once('open', function(){
     console.log('Connection has been made...');
 }).on('error', function(error){
     console.log('Connection error: ' + error);
 });
-mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar', {
+
+/*mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar', {
   useMongoClient: true
-});
+});*/
 
 var app = express();
 
@@ -35,7 +38,7 @@ app.get('/main', function(req, res){
     res.sendFile(__dirname + '/src/main/webapp/views/main.html');
 });
 
-app.listen(8080);
+app.listen(3000);
 console.log('Listening port 8080');
 
 controller(app);
