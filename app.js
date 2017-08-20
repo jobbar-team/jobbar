@@ -3,6 +3,24 @@ var express = require('express');
 
 var controller = require('./src/main/nodejs/controllers/mainController');
 var employeesController = require('./src/main/nodejs/controllers/employeesController');
+var contractController = require('./src/main/nodejs/controllers/contractController');
+
+//MongoDB
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/jobbar', {
+  useMongoClient: true
+});
+
+mongoose.connection.once('open', function(){
+    console.log('Connection has been made...');
+}).on('error', function(error){
+    console.log('Connection error: ' + error);
+});
+
+/*mongoose.connect('mongodb://nemanja:root@ds133231.mlab.com:33231/jobbar', {
+  useMongoClient: true
+});*/
 
 var app = express();
 
@@ -24,7 +42,8 @@ app.get('/about_us', function(req, res){
 });
 
 app.listen(3000);
-console.log('Listening port 3000');
+console.log('Listening port 8080');
 
 controller(app);
 employeesController(app);
+contractController(app);
