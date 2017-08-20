@@ -37,6 +37,9 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.get('/main', function(req, res){
     res.sendFile(__dirname + '/src/main/webapp/views/main.html');
 });
+app.get('/about_us', function(req, res){
+    res.sendFile(__dirname + '/src/main/webapp/views/about_us.html');
+});
 
 app.listen(3000);
 console.log('Listening port 8080');
